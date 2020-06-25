@@ -26,22 +26,11 @@ class User {
   }
 
   public function setEmail( $email ) {
-
-    if ( !filter_var($email, FILTER_VALIDATE_EMAIL)):
-      throw new Exception( 'Email incorrect' );
-    endif;
-
     $this->email = $email;
-
   }
 
-  public function setPassword( $password, $password_confirm = false ) {
-
-    if( $password_confirm && $password != $password_confirm ):
-      throw new Exception( 'Vos mots de passes sont différents' );
-    endif;
-
-    $this->password = $password;
+  public function setPassword( $password ) {
+    $this->password = password_hash($password, PASSWORD_BCRYPT);
   }
 
   /***************************

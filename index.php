@@ -24,7 +24,7 @@ if ( isset( $_GET['action'] ) ):
 
     case 'signup':
 
-      signupPage();
+      signupPage( $_POST );
 
     break;
 
@@ -55,7 +55,7 @@ else:
   if( $user_id ):
 
     mediaPage();
-  
+
   else:
   
     homePage();

@@ -27,7 +27,7 @@
         </div>
       </nav>
 
-        <!-- Page Content  -->
+      <!-- Page Content  -->
       <div id="content">
         <div class="header">
           <h2 class="title">Cod<span>'Flix</span></h2>

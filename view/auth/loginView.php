@@ -8,6 +8,12 @@
           <h2><span>Cod</span>'Flix</h2>
           <h3>Connexion</h3>
 
+          <?php if ( isset( $_GET['exec'] ) && $_GET['exec'] == "created" ):  ?>
+            <div class="alert alert-danger alert-dismissible fade show" usere="alert">
+              Le compte a été <strong>créer</strong> avec succès
+            </div>
+          <?php endif ?>
+
           <form method="post" action="index.php?action=login" class="custom-form">
 
             <div class="form-group">

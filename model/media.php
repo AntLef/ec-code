@@ -103,4 +103,17 @@ class Media {
 
   }
 
+  public static function getMediasById( int $id ) {
+
+    // Open database connection
+    $db   = init_db();
+
+    $req  = $db->prepare( "SELECT * FROM media WHERE id = ? " );
+    $req->execute( array( $id ) );
+
+    return $req->fetchAll();
+
+  }
+  
+
 }

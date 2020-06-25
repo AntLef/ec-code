@@ -18,12 +18,11 @@
         <a class="item" href="index.php?media=<?= $media['id']; ?>">
             <div class="video">
                 <div>
-                    <iframe allowfullscreen="" frameborder="0"
-                            src="<?= $media['trailer_url']; ?>" ></iframe>
+                    <iframe allowfullscreen="" frameborder="0" src="<?= $media['trailer_url']; ?>" ></iframe>
                 </div>
             </div>
             <div class="title"><?= $media['title']; ?></div>
-            <div class="title"><?= strtolower ( strftime( "%A %d %B %G", strtotime($media['release_date'] ) ) ) ; ?></div>
+            <div class="title"><i>Sortie le <?= strtolower ( strftime( "%A %d %B %G", strtotime($media['release_date'] ) ) ) ; ?></i></div>
         </a>
     <?php endforeach; ?>
 </div>
