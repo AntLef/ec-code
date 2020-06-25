@@ -103,6 +103,36 @@ class Media {
 
   }
 
+  public static function filterSeries( $id_media ) {
+
+    // Open database connection
+    $db   = init_db();
+
+    $req  = $db->prepare( "SELECT * FROM series WHERE media_id = ? " );
+    $req->execute( array( $id_media ) );
+
+    // Close databse connection
+    $db   = null;
+
+    return $req->fetchAll();
+
+  }
+
+  public static function filterInfoSeries( $id_media ) {
+
+    // Open database connection
+    $db   = init_db();
+
+    $req  = $db->prepare( "SELECT season_id FROM series WHERE media_id = ? GROUP BY season_id " );
+    $req->execute( array( $id_media ) );
+
+    // Close databse connection
+    $db   = null;
+
+    return $req->fetchAll();
+
+  }
+
   public static function getMediasById( int $id ) {
 
     // Open database connection
@@ -114,6 +144,25 @@ class Media {
     return $req->fetchAll();
 
   }
-  
+
+  public static function firstEpisodeToSeries( $id_media ) {
+
+    // Open database connection
+    $db   = init_db();
+
+    $req  = $db->prepare( "SELECT trailer_url FROM series WHERE media_id = ? ORDER BY season_id, episode_id ASC " );
+    $req->execute( array( $id_media ) );
+
+    // Close databse connection
+    $db   = null;
+
+    return $req->fetch();
+  }
+
+  public static function getTextResume( $text ) {
+
+    return substr($text, 0, 100) . " ...";
+
+  }
 
 }

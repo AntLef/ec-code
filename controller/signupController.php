@@ -9,6 +9,7 @@ require_once( 'model/user.php' );
 function signupPage( $post ) {
 
   if ( $post ):
+    
     if ( filter_var($post['email'], FILTER_VALIDATE_EMAIL) && isset ( $post['email'] ) ):
 
       $data     = new stdClass();

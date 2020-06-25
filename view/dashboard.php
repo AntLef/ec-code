@@ -10,6 +10,8 @@
 
     <link href="public/css/partials/partials.css" rel="stylesheet" />
     <link href="public/css/layout/layout.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
   </head>
 
 
@@ -22,6 +24,7 @@
             <li class="<?= !isset( $_GET['action'] ) ? "active" : ""; ?>"><a href="/">Médias</a></li>
             <li><a href="index.php?action=contact">Nous contacter</a></li>
             <li class="<?= ( isset( $_GET['action'] ) && !strcmp( $_GET['action'], "profile" ) ) ? "active" : ""; ?>"><a href="index.php?action=profile">Mon profile</a></li>
+            <li class="<?= ( isset( $_GET['action'] ) && !strcmp( $_GET['action'], "history" ) ) ? "active" : ""; ?>"><a href="index.php?action=history">Mon historique</a></li>
             <li><a href="index.php?action=logout">Me déconnecter</a></li>
           </ul>
         </div>
@@ -49,6 +52,7 @@
     <script src="public/lib/bootstrap/js/bootstrap.min.js"></script>
 
     <script src="public/js/script.js"></script>
+
   </body>
 
 </html>

@@ -46,6 +46,12 @@ if ( isset( $_GET['action'] ) ):
       
     break;
 
+    case 'history':
+
+      historyPage();
+      
+    break;
+
   endswitch;
 
 else:
