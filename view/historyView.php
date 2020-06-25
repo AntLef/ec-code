@@ -1,8 +1,7 @@
 <?php ob_start(); ?>
 
-<p>
-    historique
-</p>
+<h1 class="display-4">Mon historique</h1>
+
 
 
 

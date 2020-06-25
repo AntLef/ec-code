@@ -220,6 +220,39 @@ class Media {
 
   }
 
+  public static function mediaInFavorite( $id_media, $session_id ) {
+
+    // Open database connection
+    $db   = init_db();
+
+    $req  = $db->prepare( "SELECT id FROM favorite WHERE media_id = ? AND `user_id` = ? " );
+    $req->execute( array( $id_media, $session_id ) );
+
+    // Close databse connection
+    $db   = null;
+
+    $result = $req->fetch();
+
+    if ( $sort == 1 ):
+
+      if ( !isset( $result["id"] ) ):
+        print "Ajouter au favori";
+      else:
+        print "Supprimer des favori";
+      endif;
+    
+    else:
+
+      if ( !isset( $result["id"] ) ):
+        return 1;
+      else:
+        return 2;
+      endif;
+
+    endif;
+
+  }
+
 
 
   public static function getTextResume( $text ) {

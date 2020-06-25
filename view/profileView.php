@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 
-
+<h1 class="display-4">Mon Profile</h1>
 
 <div class="container" style="padding: 10%" >
 

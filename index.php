@@ -55,7 +55,7 @@ if ( isset( $_GET['action'] ) ):
 
     case 'favorite':
 
-      historyPage();
+      mediaPage( "favorite" );
       
     break;
 
@@ -67,7 +67,7 @@ else:
 
   if( $user_id ):
 
-    mediaPage();
+    mediaPage( "media" );
 
   else:
   
