@@ -235,19 +235,11 @@ class Media {
 
     if ( $sort == 1 ):
 
-      if ( !isset( $result["id"] ) ):
-        print "Ajouter au favori";
-      else:
-        print "Supprimer des favori";
-      endif;
-    
+      print( !isset( $result["id"] ) ? "Ajouter au favori" : "Supprimer des favori" );
+          
     else:
 
-      if ( !isset( $result["id"] ) ):
-        return 1;
-      else:
-        return 2;
-      endif;
+      return !isset( $result["id"] ) ? 1 : 2;
 
     endif;
 
