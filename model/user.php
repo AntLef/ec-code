@@ -78,6 +78,52 @@ class User {
 
   }
 
+  /***********************************
+  * ---------- UPDATE USER -----------
+  ************************************/
+
+  public static function deleteAccount( int $id_user ) {
+
+    // Open database connection
+    $db   = init_db();
+
+    // Check if email already exist
+    $req  = $db->prepare( "DELETE FROM user WHERE id = ?" );
+    $req->execute( array( $id_user ) );
+
+    // Close databse connection
+    $db = null;
+
+  }
+
+  public static function updateEmailAccount( int $id_user, string $new_email ) {
+
+    // Open database connection
+    $db   = init_db();
+
+    // Check if email already exist
+    $req  = $db->prepare(  "UPDATE user SET email=? WHERE id = ? " );
+    $req->execute( array( $new_email, $id_user ) );
+
+    // Close databse connection
+    $db = null;
+
+  }
+
+  public static function updatePasswordAccount( int $id_user, string $new_password ) {
+
+    // Open database connection
+    $db   = init_db();
+
+    // Check if email already exist
+    $req  = $db->prepare(  "UPDATE user SET `password`=? WHERE id = ? " );
+    $req->execute( array( password_hash($new_password, PASSWORD_BCRYPT) , $id_user ) );
+
+    // Close databse connection
+    $db = null;
+
+  }
+
   /**************************************
   * -------- GET USER DATA BY ID --------
   ***************************************/
@@ -99,7 +145,7 @@ class User {
   /***************************************
   * ------- GET USER DATA BY EMAIL -------
   ****************************************/
-
+  
   public function getUserByEmail() {
 
     // Open database connection
@@ -112,6 +158,47 @@ class User {
     $db   = null;
 
     return $req->fetch();
+  }
+
+  public static function ifEmailExist( $email ) {
+
+    // Open database connection
+    $db   = init_db();
+
+    $req  = $db->prepare( "SELECT COUNT(id) FROM user WHERE email = ?" );
+    $req->execute( array( $email ));
+
+    // Close databse connection
+    $db   = null;
+
+    return $req->fetch();
+  }
+
+  /***************************************
+  * ------- VERIFY USER DATA BY ID -------
+  ****************************************/
+
+  public static function ifGoodPassword( $id, $password ) {
+
+    // Open database connection
+    $db   = init_db();
+
+    $req  = $db->prepare( "SELECT password FROM user WHERE id = ?" );
+    $req->execute( array( $id ));
+
+    // Close databse connection
+    $db   = null;
+
+    $result = $req->fetch();
+
+    print_r(  $result['password'] );
+
+    if (password_verify( $password, $result['password'] ) == true):
+      return true;
+    else:
+      return false;
+    endif;
+    
   }
 
 }

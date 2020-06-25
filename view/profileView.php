@@ -1,53 +1,104 @@
 <?php ob_start(); ?>
 
-<p>
-    - modification du mot de passe<br>
-    - modification de l'adresse mail<br>
-    - suppression complete du compte
-</p>
 
-<div>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Modification du mot de passe</button>
-</div>
-<div>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@fat">Modification de l'adresse mail</button>
-</div>
-<div>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Suppression complete du compte</button>
-</div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+<div class="container" style="padding: 10%" >
 
-            <div class="modal-body">
-                <form>
-                <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Recipient:</label>
-                    <input type="text" class="form-control" id="recipient-name">
-                </div>
-                <div class="form-group">
-                    <label for="message-text" class="col-form-label">Message:</label>
-                    <textarea class="form-control" id="message-text"></textarea>
-                </div>
+
+    <ul class="nav nav-tabs justify-content-center" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="email-tab" data-toggle="tab" href="#email" role="tab" aria-controls="email" aria-selected="true">Modifier ton email</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="password-tab" data-toggle="tab" href="#password" role="tab" aria-controls="password" aria-selected="false">Modifier ton mot de passe</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="account-tab" data-toggle="tab" href="#account" role="tab" aria-controls="account" aria-selected="false">Supprimer ton compte</a>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="myTabContent">
+
+        <div class="tab-pane fade show active" id="email" role="tabpanel" aria-labelledby="email-tab">
+            <div class="container" style="margin-top: 20px" >
+
+                <form method="post" action="index.php?action=profile&submit=modify_email" class="custom-form">
+
+                    <div class="form-group">
+                        <label for="email">Nouvelle adresse email</label>
+                        <input type="email" name="email" value="" id="email" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="submit" name="Valider" class="btn btn-block bg-red" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <span class="error-msg">
+                    <?= isset( $error_msg_1 ) ? $error_msg_1 : null; ?>
+                    </span>
+                    <span class="valid-msg">
+                    <?= isset( $valid_msg_1 ) ? $valid_msg_1 : null; ?>
+                    </span>
                 </form>
+
             </div>
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send message</button>
-            </div>
-        
         </div>
+
+        <div class="tab-pane fade" id="password" role="tabpanel" aria-labelledby="password-tab">
+            <div class="container" style="margin-top: 20px" >
+
+                <form method="post" action="index.php?action=profile&submit=modify_password" class="custom-form">
+
+                    <div class="form-group">
+                        <label for="old_password">Ancien mot de passe</label>
+                        <input type="password" name="old_password" id="old_password" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="new_password">Nouveau mot de passe</label>
+                        <input type="password" name="new_password" id="new_password" class="form-control" />
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="submit" name="Valider" class="btn btn-block bg-red" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <span class="error-msg">
+                    <?= isset( $error_msg_2 ) ? $error_msg_2 : null; ?>
+                    </span>
+                    <span class="valid-msg">
+                    <?= isset( $valid_msg_2 ) ? $valid_msg_2 : null; ?>
+                    </span>
+                </form>
+
+            </div>
+        </div>
+
+        <div class="tab-pane fade" id="account" role="tabpanel" aria-labelledby="account-tab">
+            <div class="container" style="margin-top: 20px" >
+
+                <a href="index.php?action=profile&submit=delete" >
+                    <button type="button" style="margin-bottom: 15px; margin-left: 15px;" class="btn btn-outline-danger" >Supprimer le compte</button>
+                </a>
+        
+            </div>
+        </div>
+
     </div>
+
 </div>
+
+
+
+
 
 
 <?php $content = ob_get_clean(); ?>

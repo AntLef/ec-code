@@ -9,7 +9,7 @@ require_once( 'model/user.php' );
 function signupPage( $post ) {
 
   if ( $post ):
-    
+
     if ( filter_var($post['email'], FILTER_VALIDATE_EMAIL) && isset ( $post['email'] ) ):
 
       $data     = new stdClass();
@@ -25,6 +25,9 @@ function signupPage( $post ) {
         if( $post['password'] == $post['password_confirm'] ):
           
           $user->createUser();
+
+          // function email verif
+          // emailConfirmation($userData['id']);
 
           header( 'location: index.php' );
 

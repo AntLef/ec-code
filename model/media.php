@@ -159,10 +159,97 @@ class Media {
     return $req->fetch();
   }
 
+  public static function addFavorite( $id_media, $session_id ) {
+
+    print ( $id_media . " === " . $session_id );
+
+    // Open database connection
+    $db   = init_db();
+
+    $req  = $db->prepare( "SELECT id FROM favorite WHERE media_id = ? AND `user_id` = ? " );
+    $req->execute( array( $id_media, $session_id ) );
+
+    $result = $req->fetch();
+
+    if ( !isset($result["id"]) ):
+      $sql = "INSERT INTO favorite (media_id, `user_id`) VALUES (?, ?) ";
+    else:
+      $sql = "DELETE FROM favorite WHERE media_id = ? AND `user_id` = ? ";
+    endif;
+
+    $req  = $db->prepare( $sql );
+    $req->execute( array( $id_media, $session_id ) );
+
+    // Close databse connection
+    $db   = null;
+
+    header( 'location: index.php' );
+
+  }
+
+  public static function textFavorite( $id_media, $session_id, $sort ) {
+
+    // Open database connection
+    $db   = init_db();
+
+    $req  = $db->prepare( "SELECT id FROM favorite WHERE media_id = ? AND `user_id` = ? " );
+    $req->execute( array( $id_media, $session_id ) );
+
+    // Close databse connection
+    $db   = null;
+
+    $result = $req->fetch();
+
+    if ( $sort == 1 ):
+
+      if ( !isset( $result["id"] ) ):
+        print "Ajouter au favori";
+      else:
+        print "Supprimer des favori";
+      endif;
+    
+    else:
+
+      if ( !isset( $result["id"] ) ):
+        return 1;
+      else:
+        return 2;
+      endif;
+
+    endif;
+
+  }
+
+
+
   public static function getTextResume( $text ) {
 
     return substr($text, 0, 100) . " ...";
 
+  }
+  
+  public function emailConfirmation( $the_key ) {
+
+    $eol = PHP_EOL;
+    $uid = md5(uniqid(time()));
+
+    $to      = $this->getEmail();
+    $subject = 'Confirmer votre email';
+    $message = <<<HTML
+      <html>
+        <body>
+          <h1>Bonjour, Veuillez confirmer votre compte codflex</h1>
+          <a href="http://localhost/Coding/Ec_code/ec_code_php/ec-code-2020-codflix-php-master/controller/VerificationController.php?user_key=$the_key">Clique connard</a>
+        </body>
+      </html>
+    HTML;
+    $header = "From: codflix <coding@gmail.com>".$eol;
+    $header .= "Reply-To: ".$this->getEmail().$eol;
+    $header .= "MIME-Version: 1.0\r\n";
+    $header .= "Content-Type: multipart/mixed; boundary=\"".$uid."\"";
+
+    mail($to, $subject, $message, $header);
+    echo "<script>alert('Vous avez reçu un emal de confirmation')</script>";
   }
 
 }

@@ -24,6 +24,7 @@
             <li class="<?= !isset( $_GET['action'] ) ? "active" : ""; ?>"><a href="/">Médias</a></li>
             <li><a href="index.php?action=contact">Nous contacter</a></li>
             <li class="<?= ( isset( $_GET['action'] ) && !strcmp( $_GET['action'], "profile" ) ) ? "active" : ""; ?>"><a href="index.php?action=profile">Mon profile</a></li>
+            <li class="<?= ( isset( $_GET['action'] ) && !strcmp( $_GET['action'], "favorite" ) ) ? "active" : ""; ?>"><a href="index.php?action=favorite">Mes favoris </a></li>
             <li class="<?= ( isset( $_GET['action'] ) && !strcmp( $_GET['action'], "history" ) ) ? "active" : ""; ?>"><a href="index.php?action=history">Mon historique</a></li>
             <li><a href="index.php?action=logout">Me déconnecter</a></li>
           </ul>

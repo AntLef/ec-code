@@ -13,6 +13,10 @@ function mediaPage() {
     $search = isset( $_GET['title'] ) ? $_GET['title'] : null;
     $medias = Media::filterMedias( $search );
 
+    if ( isset( $_GET['like'] ) ):
+      Media::addFavorite( $_GET['like'], $_SESSION['user_id'] );
+    endif;
+
     require('view/mediaListView.php');
   
   else:
@@ -20,7 +24,7 @@ function mediaPage() {
     $medias = Media::getMediasById( $_GET['media'] );
 
     if ( $medias[0]['type'] == "series" ):
-      
+
       $series = Media::filterSeries( $medias[0]['id'] );
       $info_series = Media::filterInfoSeries( $medias[0]['id'] );
 
