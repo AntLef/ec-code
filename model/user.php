@@ -91,6 +91,9 @@ class User {
     $req  = $db->prepare( "DELETE FROM user WHERE id = ?" );
     $req->execute( array( $id_user ) );
 
+    $req  = $db->prepare( "DELETE FROM favorite WHERE `user_id` = ?" );
+    $req->execute( array( $id_user ) );
+
     // Close databse connection
     $db = null;
 

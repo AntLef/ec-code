@@ -2,7 +2,9 @@
 
 <div class="container-fluid" style="padding-bottom: 20px">
 
-    <div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="<?= $url; ?>" width="300" height="150"></iframe></div>
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item" src="<?= $url; ?>" width="300" height="150"></iframe>
+    </div>
 
     <h1 class="display-4" style="margin-top:20px"><?= $medias[0]['title']; ?></h1>
     <p><?= $medias[0]['summary']; ?></p>

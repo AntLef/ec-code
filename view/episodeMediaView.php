@@ -13,7 +13,7 @@
                 </div>
 
                 <a href="index.php?media=<?= $medias[0]['id']; ?>&url=<?= $serie['trailer_url']; ?>?autoplay=1" >
-                    <button type="button" style="margin-bottom: 15px; margin-left: 15px;" class="btn btn-outline-success" >Regarder L'épisode <?= $serie["episode_id"] ?></button>
+                    <button type="button" style="margin-bottom: 15px; margin-left: 15px;" class="btn btn-outline-success" >Regarder l'épisode <?= $serie["episode_id"] ?></button>
                 </a>
 
             </div>

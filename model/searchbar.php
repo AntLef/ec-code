@@ -9,16 +9,16 @@ $db   = init_db();
 try{
     if(isset($_REQUEST["term"])){
         // create prepared statement
-        $sql = "SELECT * FROM media WHERE title LIKE :term";
+        $sql = "SELECT * FROM media WHERE title LIKE :term OR `type` LIKE :term OR duration LIKE :term";
         $stmt = $db->prepare($sql);
-        $term = $_REQUEST["term"] . '%';
+        $term = '%' . $_REQUEST["term"] . '%';
         // bind parameters to statement
         $stmt->bindParam(":term", $term);
         // execute the prepared statement
         $stmt->execute();
         if($stmt->rowCount() > 0){
             while($row = $stmt->fetch()){
-                echo "<p>" . $row["title"] . "</p>";
+                echo "<p><a href='index.php?media=" . $row['id'] ."'>" . $row["title"] . " - " . $row["type"] . " - " . $row["duration"] . "</a></p>";
             }
         } else{
             echo "<p>Aucun Résultat</p>";

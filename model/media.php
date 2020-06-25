@@ -264,7 +264,7 @@ class Media {
       <html>
         <body>
           <h1>Bonjour, Veuillez confirmer votre compte codflex</h1>
-          <a href="http://localhost/Coding/Ec_code/ec_code_php/ec-code-2020-codflix-php-master/controller/VerificationController.php?user_key=$the_key">Clique connard</a>
+          <a href="http://localhost/...">Clique connard</a>
         </body>
       </html>
     HTML;

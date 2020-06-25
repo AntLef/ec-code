@@ -15,23 +15,12 @@
 
 <div class="container">
 
-    <div class="search-box input-group flex-nowrap">
+    <div class="search-box input-group flex-nowrap" style="padding-top: 30px; padding-bottom: 30px">
         <input type="text" autocomplete="off" placeholder="Recherche un film, une série ..." />
         <div class="result"></div>
     </div>
 
-    <div class="row">
-        <div class="col-md-4 offset-md-8">
-            <form method="get">
-                <div class="form-group has-btn">
-                    <input type="search" id="search" name="title" value="<?= $search; ?>" class="form-control"
-                        placeholder="Rechercher un film ou une série">
 
-                    <button type="submit" class="btn btn-block bg-red">Valider</button>
-                </div>
-            </form>
-        </div>
-    </div>
 
     <div class="media-list">
 

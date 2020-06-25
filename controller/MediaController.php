@@ -1,6 +1,7 @@
 <?php
 
 require_once( 'model/media.php' );
+require_once( 'model/history.php' );
 
 /***************************
 * ----- LOAD HOME PAGE -----
@@ -18,6 +19,8 @@ function mediaPage( $page ) {
     endif;
 
     require('view/mediaListView.php');
+
+    print_r($medias);
   
   else:
 
@@ -30,6 +33,10 @@ function mediaPage( $page ) {
 
       $first_url = Media::firstEpisodeToSeries( $medias[0]['id'] );
       $url = isset( $_GET['url'] ) ? $_GET['url'] : $first_url['trailer_url'] ;
+
+    else:
+      $url = $medias[0]["trailer_url"] . "?autoplay=1";
+      // missing function for add in history table
 
     endif;
 
